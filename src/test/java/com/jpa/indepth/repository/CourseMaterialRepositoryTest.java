@@ -19,12 +19,12 @@ public class CourseMaterialRepositoryTest {
     public void SaveCourseMaterial() {
 
         Course course = Course.builder()
-            .title("Math")
+            .title(".Net")
             .credit(6)
             .build();
 
         CourseMaterial courseMaterial = CourseMaterial.builder()
-            .url("www.google.com")
+            .url("www.bing.com")
             .course(course)
             .build();
 
