@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.jpa.indepth.entity.Course;
+import com.jpa.indepth.entity.Teacher;
 
 @SpringBootTest
 public class CourseRepositoryTest {
@@ -19,4 +20,22 @@ public class CourseRepositoryTest {
         List<Course> courses = courseRepository.findAll();
         System.out.println(courses);
     }
+
+    @Test
+    public void saveCourseWithTeacher() {
+
+        Teacher teacher = Teacher.builder()
+            .firstName("Melisa")
+            .lastName("O")
+            .build();
+
+        Course course = Course.builder()
+            .title("Python")
+            .credit(6)
+            .teacher(teacher)
+            .build();
+
+        courseRepository.save(course);
+    }
+
 }
