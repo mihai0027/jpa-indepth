@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.jpa.indepth.entity.Course;
+import com.jpa.indepth.entity.Student;
 import com.jpa.indepth.entity.Teacher;
 
 @SpringBootTest
@@ -82,6 +83,31 @@ public class CourseRepositoryTest {
         List<Course> courses = courseRepository.findByTitleContaining("a", firstPageTenRecords).getContent();
 
         System.out.println("courses = " + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+
+        Teacher teacher = Teacher.builder()
+            .firstName("Lizzy")
+            .lastName("Smith")
+            .build();
+
+        Course course = Course.builder()
+            .title("AI")
+            .credit(12)
+            .teacher(teacher)
+            .build();
+
+        Student student = Student.builder()
+            .firstName("Anna")
+            .lastName("Doth")
+            .emailId("anna@gmail.com")
+            .build();
+
+        course.addStudents(student);
+
+        courseRepository.save(course);
     }
 
 }
